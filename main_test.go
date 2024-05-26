@@ -2,19 +2,28 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"testing"
-
-	"github.com/davecgh/go-spew/spew"
 )
 
-func TestGpxFilesNames(t *testing.T) {
-	files, err := os.ReadDir("gpx")
+func TestCombine(t *testing.T) {
+	folderPath := "./gpx" // Change this to your folder path if different
+	outputFile := "combined_output.gpx"
+
+	inputFiles, err := getGPXFilesFromFolder(folderPath)
 	if err != nil {
-		t.Error(err)
+		fmt.Println("Error getting GPX files:", err)
+		return
 	}
-	spew.Dump(files)
-	for _, file := range files {
-		fmt.Println(file.Name())
+
+	if err := combineGPXFiles(inputFiles, outputFile); err != nil {
+		fmt.Println("Error combining GPX files:", err)
+		return
 	}
+
+	fmt.Printf("Combined GPX file saved as %s\n", outputFile)
+}
+
+func TestReduceSizeOfFile(t *testing.T) {
+	gpxFile := "modified_modified_modified_combined_output.gpx"
+	reduceSizeOfFile(gpxFile)
 }

@@ -21,7 +21,7 @@ func main() {
 	}
 	paths := []*sm.Path{}
 	for _, file := range files {
-		s := fmt.Sprintf("color:blue|weight:10|gpx:./gpx/%s", file.Name())
+		s := fmt.Sprintf("color:blue|weight:4|gpx:./gpx/%s", file.Name())
 		path, err := sm.ParsePathString(s)
 		if err != nil || len(path) == 0 {
 			panic(err)
